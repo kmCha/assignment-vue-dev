@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <input type="text" v-model="msg">
+    <button type="button" @click="getAssignments">获取资源</button>
   </div>
 </template>
 
@@ -13,6 +15,17 @@ export default {
       // preserves its current state and we are modifying
       // its initial state.
       msg: 'Hello World!'
+    }
+  },
+  methods: {
+    getAssignments () {
+      this.msg = 'loading...'
+      this.$http.get('/users').then(function (response) {
+        this.msg = JSON.stringify(response.data)
+      }, function (error) {
+        window.alert(error)
+      })
+      // setTimeout(() => { this.msg = 'hahaha' }, 1000)
     }
   }
 }
