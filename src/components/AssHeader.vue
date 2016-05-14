@@ -1,6 +1,10 @@
 <template>
   <div class="header">
-    <span>{{ title }}</span>
+    <ul class="list list-left">
+      <li>logo</li>
+      <li>登录</li>
+      <li>注册</li>
+    </ul>
   </div>
 </template>
 
@@ -13,3 +17,17 @@
     }
   }
 </script>
+
+<style lang="less" scoped>
+  @grey: #bbb;
+  .header {
+    background: @grey;
+  }
+  .list {
+    list-style: none;
+    margin-top: 0;
+    li {
+      display: inline-block;
+    }
+  }
+</style>

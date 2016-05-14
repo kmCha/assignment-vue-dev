@@ -3,6 +3,9 @@
     <ass-header></ass-header>
     <ass-body></ass-body>
     <ass-footer></ass-footer>
+    <router-view></router-view>
+    <a v-link="{ path: '/foo'}">header</a>
+    <a v-link="{ path: '/bar'}">footer</a>
   </div>
 </template>
 
@@ -21,5 +24,7 @@ export default {
 </script>
 
 <style>
-
+  body {
+    margin: 0;
+  }
 </style>
