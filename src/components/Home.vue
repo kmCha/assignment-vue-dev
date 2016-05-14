@@ -1,8 +1,10 @@
 <template>
   <div class="home">
-    <span v-if="!$loadingRouteData">{{ getAssignments }}</span>
     <span v-if="$loadingRouteData">loading...</span>
-    <button type="button" @click="setAssignments('hahaha')">设置assignment</button>
+    <ul v-if="!$loadingRouteData">
+      <li v-for="assignment in getAssignments">{{ assignment.title }}</li>
+    </ul>
+    <!-- <button type="button" @click="setAssignments('hahaha')">设置assignment</button> -->
   </div>
 </template>
 
@@ -17,7 +19,12 @@
       // },
       data (transition) {
         // transition.abort()
-        setTimeout(() => transition.next(), 2000)
+        // setTimeout(() => transition.next(), 2000)
+        return this.$http.get('/assignments').then(function (response) {
+          let assignments = response.data
+          this.setAssignments(assignments)
+          // transition.next()
+        })
       }
     },
     vuex: {

@@ -2,6 +2,7 @@ var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
 var config = require('../config')
+var mongoose = require('mongoose')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
@@ -16,7 +17,7 @@ var app = express()
 var compiler = webpack(webpackConfig)
 
 
-var users = require('../routes/users');
+var assignments = require('../routes/assignments');
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
@@ -44,8 +45,11 @@ Object.keys(proxyTable).forEach(function (context) {
   app.use(proxyMiddleware(context, options))
 })
 
+// database
+mongoose.connect('mongodb://127.0.0.1/assignments');
+
 // routes
-app.use('/users', users);
+app.use('/assignments', assignments);
 
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
