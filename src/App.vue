@@ -1,25 +1,24 @@
 <template>
   <div id="app">
     <ass-header></ass-header>
-    <ass-body></ass-body>
-    <ass-footer></ass-footer>
     <router-view></router-view>
-    <a v-link="{ path: '/foo'}">header</a>
-    <a v-link="{ path: '/bar'}">footer</a>
+    <ass-footer></ass-footer>
+    <a v-link="{ path: '/'}">welcome</a>
+    <a v-link="{ path: '/home'}">home</a>
   </div>
 </template>
 
 <script>
 import AssHeader from './components/AssHeader'
-import AssBody from './components/AssBody'
 import AssFooter from './components/AssFooter'
+import store from './vuex/store'
 
 export default {
   components: {
     AssHeader,
-    AssBody,
     AssFooter
-  }
+  },
+  store
 }
 </script>
 

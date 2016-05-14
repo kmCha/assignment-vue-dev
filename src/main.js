@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App'
-import AssHeader from './components/AssHeader'
-import AssFooter from './components/AssFooter'
+import Home from './components/Home'
+import Welcome from './components/Welcome'
 import vueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 
@@ -10,11 +10,11 @@ Vue.use(VueRouter)
 
 var router = new VueRouter()
 router.map({
-  '/foo': {
-    component: AssHeader
+  '/': {
+    component: Welcome
   },
-  '/bar': {
-    component: AssFooter
+  '/home': {
+    component: Home
   }
 })
 

@@ -26,8 +26,10 @@
   .list {
     list-style: none;
     margin-top: 0;
+    padding: 0 1em;
     li {
       display: inline-block;
+      padding: 0.5em 0.3em;
     }
   }
 </style>
