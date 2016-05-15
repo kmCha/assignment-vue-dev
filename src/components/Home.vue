@@ -24,8 +24,8 @@
       data () {
         // transition.abort()
         // setTimeout(() => transition.next(), 2000)
-        var assResource = this.$resource('/assignments{/account}')
-        return assResource.get({ account: 'ma2321987' }).then(function (response) {
+        var assResource = this.$resource('/assignments{/username}')
+        return assResource.get({ username: 'ma2321987' }).then(function (response) {
           let assignments = response.data
           this.setAssignments(assignments)
           // transition.next()

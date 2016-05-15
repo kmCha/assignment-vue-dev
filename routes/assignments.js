@@ -3,9 +3,9 @@ var router = express.Router();
 var Assignments = require('../database/assignmentModel.js')
 
 /* GET users listing. */
-router.get('/:account', function(req, res, next) {
+router.get('/:username', function(req, res, next) {
   // console.log(req.params)
-  Assignments.find({user: req.params.account})
+  Assignments.find({user: req.params.username})
              .exec()
              .then(function (assignments) {
                res.json(assignments)
