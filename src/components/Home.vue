@@ -2,7 +2,7 @@
   <div class="home">
     <span v-if="$loadingRouteData">loading...</span>
     <ul v-if="!$loadingRouteData">
-      <li v-for="assignment in getAssignments">{{ assignment.title }}</li>
+      <assignment v-for="assignment in getAssignments" :assignment="assignment"></assignment>
     </ul>
     <!-- <button type="button" @click="setAssignments('hahaha')">设置assignment</button> -->
   </div>
@@ -11,13 +11,17 @@
 <script>
   import { setAssignments } from '../vuex/actions'
   import { getAssignments } from '../vuex/getters'
+  import Assignment from './Assignment'
 
   export default {
+    components: {
+      Assignment
+    },
     route: {
       // activate (transition) {
       //   transition.next()
       // },
-      data (transition) {
+      data () {
         // transition.abort()
         // setTimeout(() => transition.next(), 2000)
         return this.$http.get('/assignments').then(function (response) {
