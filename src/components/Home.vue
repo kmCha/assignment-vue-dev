@@ -2,7 +2,7 @@
   <div class="home">
     <span v-if="$loadingRouteData">loading...</span>
     <ul v-if="!$loadingRouteData">
-      <assignment v-for="assignment in getAssignments" :assignment="assignment"></assignment>
+      <assignment v-for="assignment in assignments" :assignment="assignment"></assignment>
     </ul>
     <!-- <button type="button" @click="setAssignments('hahaha')">设置assignment</button> -->
   </div>
@@ -24,7 +24,8 @@
       data () {
         // transition.abort()
         // setTimeout(() => transition.next(), 2000)
-        return this.$http.get('/assignments').then(function (response) {
+        var assResource = this.$resource('/assignments{/account}')
+        return assResource.get({ account: 'ma2321987' }).then(function (response) {
           let assignments = response.data
           this.setAssignments(assignments)
           // transition.next()
@@ -36,7 +37,7 @@
         setAssignments
       },
       getters: {
-        getAssignments
+        assignments: getAssignments
       }
     }
   }
