@@ -2,9 +2,9 @@
   <div class="home">
     <span v-if="$loadingRouteData">loading...</span>
     <ul v-if="!$loadingRouteData">
-      <assignment v-for="assignment in assignments" :assignment="assignment"></assignment>
+      <assignment v-for="assignment in limitedAss" :assignment="assignment"></assignment>
     </ul>
-    <!-- <button type="button" @click="setAssignments('hahaha')">设置assignment</button> -->
+    <!-- <button type="button" @click="numOfAss++">设置assignment</button> -->
   </div>
 </template>
 
@@ -14,6 +14,16 @@
   import Assignment from './Assignment'
 
   export default {
+    data () {
+      return {
+        numOfAss: 1
+      }
+    },
+    computed: {
+      limitedAss () {
+        return this.assignments.slice(0, this.numOfAss)
+      }
+    },
     components: {
       Assignment
     },

@@ -2,7 +2,7 @@
   <div class="header">
     <ul class="list">
       <li class="item">Assignment Recorder</li>
-      <li class="item item-left">登录</li>
+      <li class="item item-left" @click="toggleLogin">登录</li>
       <li class="item item-left">注册</li>
       <li class="item item-right">
         <img class="nav-logo" src="../assets/logo.png" alt="logo" />
@@ -12,13 +12,20 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        title: 'header'
-      }
+import { toggleLogin } from '../vuex/actions'
+
+export default {
+  data () {
+    return {
+      title: 'header'
+    }
+  },
+  vuex: {
+    actions: {
+      toggleLogin
     }
   }
+}
 </script>
 
 <style lang="less" scoped>

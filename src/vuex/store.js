@@ -4,12 +4,16 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
-  assignments: []
+  assignments: [],
+  loginOpened: false
 }
 
 const mutations = {
   SETASSIGNMENTS (state, assignments) {
     state.assignments = assignments
+  },
+  TOGGLELOGIN (state) {
+    state.loginOpened = !state.loginOpened
   }
 }
 
