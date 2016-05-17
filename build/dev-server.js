@@ -4,6 +4,8 @@ var webpack = require('webpack')
 var config = require('../config')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser')
+var session = require('../database/session')
 var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
@@ -19,7 +21,7 @@ var compiler = webpack(webpackConfig)
 
 // routers
 var assignments = require('../routes/assignments');
-var users = require('../routes/users.js');
+var users = require('../routes/users');
 
 var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
@@ -50,6 +52,9 @@ Object.keys(proxyTable).forEach(function (context) {
 // database
 mongoose.connect('mongodb://127.0.0.1/assignments');
 
+// session
+session.connect(app);
+
 // bodyParser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -58,8 +63,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/assignments', assignments);
 app.use('/users', users);
 
+// cookie
+app.use(cookieParser());
+
 // handle fallback for HTML5 history API
-app.use(require('connect-history-api-fallback')())
+app.use(require('connect-history-api-fallback')());
 
 // serve webpack bundle output
 app.use(devMiddleware)
