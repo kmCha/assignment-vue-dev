@@ -4,6 +4,7 @@
       <li class="item">Assignment Recorder</li>
       <li class="item item-left" v-if="!getUsername" @click="toggleLogin">登录</li>
       <li class="item item-left" v-if="!getUsername">注册</li>
+      <li class="item item-right" v-if="getUsername" @click="logOut">注销</li>
       <li class="item item-right">
         <img class="nav-logo" src="../assets/logo.png" alt="logo" />
       </li>
@@ -12,8 +13,9 @@
 </template>
 
 <script>
-import { toggleLogin } from '../vuex/actions'
+import { toggleLogin, clearUsername } from '../vuex/actions'
 import { getUsername } from '../vuex/getters'
+import { router } from '../vue-router/router'
 
 export default {
   data () {
@@ -21,9 +23,18 @@ export default {
       title: 'header'
     }
   },
+  methods: {
+    logOut () {
+      this.clearUsername()
+      router.go({
+        path: '/'
+      })
+    }
+  },
   vuex: {
     actions: {
-      toggleLogin
+      toggleLogin,
+      clearUsername
     },
     getters: {
       getUsername
