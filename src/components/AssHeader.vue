@@ -25,9 +25,11 @@ export default {
   },
   methods: {
     logOut () {
-      this.clearUsername()
-      router.go({
-        path: '/'
+      this.$http.get('/users/logOut').then(res => {
+        if (res.data.status === 'success') {
+          this.clearUsername()
+          router.go({ path: '/' })
+        }
       })
     }
   },

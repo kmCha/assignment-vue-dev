@@ -5,11 +5,18 @@ var Users = require('../database/userModel.js');
 // var Profiles = require('../database/profileModel.js');
 
 router.get('/loggedIn', function (req, res) {
-	console.log(req.session);
-	res.json('');
+	res.json(req.session.name);
 })
 
-router.post('/login', function (req, res) {
+router.get('/logOut', function (req, res) {
+	req.session.cookie.expires = new Date(Date.now());
+	req.session.destroy()
+	res.json({
+		status: 'success'
+	})
+})
+
+router.post('/logIn', function (req, res) {
 	Users.findOne({					//检查数据库中帐号存不存在
 		name: req.body.name
 	}).then(function(user) {
@@ -20,7 +27,6 @@ router.post('/login', function (req, res) {
 			if (user.password === password) {				//密码正确 添加session
 				req.session.cookie.expires = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);        //只有登陆了才设置session name为帐号，否则为null，浏览器关闭自动销毁（见session.js)
 				req.session.name = user.name;
-				console.log(req.session);
 				user = {
 					status: 'success'
 				};

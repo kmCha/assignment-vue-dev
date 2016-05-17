@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     logIn () {
-      let User = this.$resource('/users/login')
+      let User = this.$resource('/users/logIn')
       return User.save({
         name: this.username,
         password: this.password
