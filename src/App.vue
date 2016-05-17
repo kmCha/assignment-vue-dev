@@ -5,8 +5,8 @@
     <ass-header></ass-header>
     <router-view></router-view>
     <ass-footer></ass-footer>
-    <a v-link="{ path: '/'}">welcome</a>
-    <a v-link="{ path: '/home'}">home</a>
+    <!-- <a v-link="{ path: '/'}">welcome</a>
+    <a v-link="{ path: '/home'}">home</a> -->
   </div>
 </template>
 

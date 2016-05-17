@@ -35,9 +35,6 @@ export default {
     Assignment
   },
   route: {
-    // activate (transition) {
-    //   transition.next()
-    // },
     data (transition) {
       if (!this.getUsername) {
         transition.abort()

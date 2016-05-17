@@ -5,7 +5,7 @@ var Users = require('../database/userModel.js');
 // var Profiles = require('../database/profileModel.js');
 
 router.get('/loggedIn', function (req, res) {
-	res.json(req.session.name);
+	res.send(req.session.name);
 })
 
 router.get('/logOut', function (req, res) {
