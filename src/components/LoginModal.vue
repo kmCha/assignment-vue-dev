@@ -1,20 +1,45 @@
 <template>
   <div class="login-shadow" @click.self="toggleLogin">
     <div class="login-content">
-      <input type="text" name="username" placeholder="username">
-      <input type="password" name="password" placeholder="password">
-      <button type="button">提交</button>
+      <input type="text" placeholder="username" v-model="username">
+      <input type="password" placeholder="password" v-model="password">
+      <button type="button" @click="logIn">登录</button>
     </div>
   </div>
 </template>
 
 <script>
-import { toggleLogin } from '../vuex/actions'
+import { toggleLogin, setUsername } from '../vuex/actions'
+import { router } from '../vue-router/router'
 
 export default {
+  data () {
+    return {
+      username: '',
+      password: ''
+    }
+  },
   vuex: {
     actions: {
-      toggleLogin
+      toggleLogin,
+      setUsername
+    }
+  },
+  methods: {
+    logIn () {
+      let User = this.$resource('/users/login')
+      return User.save({
+        name: this.username,
+        password: this.password
+      }).then(user => {
+        if (user.data.status === 'success') {
+          this.setUsername(this.username)
+          this.toggleLogin()
+          router.go({
+            path: '/home'
+          })
+        }
+      })
     }
   }
 }
@@ -29,17 +54,23 @@ export default {
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.1);
     display: flex;
-    // justify-content: center;
-    // align-items: center;
+    justify-content: center;
+    align-items: center;
     .login-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       background-color: #fff;
-      max-width: 400px;
+      width: 400px;
       min-height: 20vh;
-      margin: auto;
-      padding: 50px;
+      // margin: auto;
+      // padding: 50px;
 
-      input {
-        display: block;
+      input, button {
+        // display: block;
+        // margin: 0 20px;
+        width: 200px;
       }
     }
   }

@@ -2,8 +2,8 @@
   <div class="header">
     <ul class="list">
       <li class="item">Assignment Recorder</li>
-      <li class="item item-left" @click="toggleLogin">登录</li>
-      <li class="item item-left">注册</li>
+      <li class="item item-left" v-if="!getUsername" @click="toggleLogin">登录</li>
+      <li class="item item-left" v-if="!getUsername">注册</li>
       <li class="item item-right">
         <img class="nav-logo" src="../assets/logo.png" alt="logo" />
       </li>
@@ -13,6 +13,7 @@
 
 <script>
 import { toggleLogin } from '../vuex/actions'
+import { getUsername } from '../vuex/getters'
 
 export default {
   data () {
@@ -23,6 +24,9 @@ export default {
   vuex: {
     actions: {
       toggleLogin
+    },
+    getters: {
+      getUsername
     }
   }
 }

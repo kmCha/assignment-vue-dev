@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 const state = {
   assignments: [],
-  loginOpened: false
+  loginOpened: false,
+  username: ''
 }
 
 const mutations = {
@@ -14,6 +15,12 @@ const mutations = {
   },
   TOGGLELOGIN (state) {
     state.loginOpened = !state.loginOpened
+  },
+  SETUSERNAME (state, username) {
+    state.username = username
+  },
+  CLEARUSERNAME (state) {
+    state.username = ''
   }
 }
 
