@@ -1,7 +1,7 @@
 <template>
-  <div class="login-shadow" @click.self="toggleLogin">
-    <div class="login-content">
-      <span class="login-title">用户登录</span>
+  <div class="modal-shadow" @click.self="toggleLogin">
+    <div class="modal-content">
+      <span class="modal-title">用户登录</span>
       <input type="text" placeholder="username" v-model="username">
       <input type="password" placeholder="password" v-model="password">
       <button type="button" @click="logIn">登录</button>
@@ -48,7 +48,7 @@ export default {
 
 <style lang="less">
   @blue: #8888ff;
-  .login-shadow {
+  .modal-shadow {
     position: absolute;
     top: 0;
     left: 0;
@@ -58,7 +58,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    .login-content {
+    .modal-content {
       // border-radius: 50px;
       border-top-left-radius: 2rem;
       border-top-right-radius: 2rem;
@@ -72,9 +72,10 @@ export default {
       min-height: 20vh;
       // margin: auto;
       // padding: 50px;
-      .login-title {
+      .modal-title {
         color: @blue;
         font-weight: bold;
+        margin: 10px 0 2px 0;
       }
       input {
         border-top: none;
