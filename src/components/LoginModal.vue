@@ -1,6 +1,7 @@
 <template>
   <div class="login-shadow" @click.self="toggleLogin">
     <div class="login-content">
+      <span class="login-title">用户登录</span>
       <input type="text" placeholder="username" v-model="username">
       <input type="password" placeholder="password" v-model="password">
       <button type="button" @click="logIn">登录</button>
@@ -46,6 +47,7 @@ export default {
 </script>
 
 <style lang="less">
+  @blue: #8888ff;
   .login-shadow {
     position: absolute;
     top: 0;
@@ -57,6 +59,10 @@ export default {
     justify-content: center;
     align-items: center;
     .login-content {
+      // border-radius: 50px;
+      border-top-left-radius: 50px;
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -66,7 +72,23 @@ export default {
       min-height: 20vh;
       // margin: auto;
       // padding: 50px;
-
+      .login-title {
+        color: @blue;
+        font-weight: bold;
+      }
+      input {
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 2px @blue solid;
+      }
+      button {
+        margin: 10px 0;
+        color: white;
+        font-weight: bold;
+        border: none;
+        background: @blue;
+      }
       input, button {
         // display: block;
         // margin: 0 20px;
