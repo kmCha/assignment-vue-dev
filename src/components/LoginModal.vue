@@ -60,9 +60,9 @@ export default {
     align-items: center;
     .login-content {
       // border-radius: 50px;
-      border-top-left-radius: 50px;
-      border-top-right-radius: 50px;
-      border-bottom-right-radius: 50px;
+      border-top-left-radius: 2rem;
+      border-top-right-radius: 2rem;
+      border-bottom-right-radius: 2rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
