@@ -3,7 +3,7 @@
     <ul class="list">
       <li class="item">Assignment Recorder</li>
       <li class="item item-left" v-if="!getUsername" @click="toggleLogin">登录</li>
-      <li class="item item-left" v-if="!getUsername">注册</li>
+      <li class="item item-left" v-if="!getUsername" @click="toggleSignup">注册</li>
       <li class="item item-right">
         <img class="nav-logo" src="../assets/logo.png" alt="logo" />
       </li>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { toggleLogin, clearUsername } from '../vuex/actions'
+import { toggleLogin, clearUsername, toggleSignup } from '../vuex/actions'
 import { getUsername } from '../vuex/getters'
 import { router } from '../vue-router/router'
 
@@ -36,6 +36,7 @@ export default {
   vuex: {
     actions: {
       toggleLogin,
+      toggleSignup,
       clearUsername
     },
     getters: {

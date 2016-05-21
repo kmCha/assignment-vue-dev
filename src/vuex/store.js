@@ -6,6 +6,7 @@ Vue.use(Vuex)
 const state = {
   assignments: [],
   loginOpened: false,
+  signupOpened: false,
   username: ''
 }
 
@@ -15,6 +16,9 @@ const mutations = {
   },
   TOGGLELOGIN (state) {
     state.loginOpened = !state.loginOpened
+  },
+  TOGGLESIGNUP (state) {
+    state.signupOpened = !state.signupOpened
   },
   SETUSERNAME (state, username) {
     state.username = username

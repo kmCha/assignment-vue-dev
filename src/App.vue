@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <login-modal v-show="loginOpened" transition="fade"></login-modal>
-    <signup-modal></signup-modal>
+    <signup-modal v-show="signupOpened" transition="fade"></signup-modal>
     <ass-header></ass-header>
     <router-view></router-view>
     <ass-footer></ass-footer>
@@ -16,7 +16,7 @@ import AssFooter from './components/AssFooter'
 import LoginModal from './components/LoginModal'
 import SignupModal from './components/SignupModal'
 import store from './vuex/store'
-import { isLoginOpened } from './vuex/getters'
+import { isLoginOpened, isSignupOpened } from './vuex/getters'
 import Vue from 'vue'
 
 Vue.transition('fade', {
@@ -44,7 +44,8 @@ export default {
   store,
   vuex: {
     getters: {
-      loginOpened: isLoginOpened
+      loginOpened: isLoginOpened,
+      signupOpened: isSignupOpened
     }
   }
 }
