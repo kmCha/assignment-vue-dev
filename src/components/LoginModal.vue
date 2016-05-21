@@ -4,7 +4,8 @@
       <span class="modal-title">用户登录</span>
       <input type="text" placeholder="username" v-model="username">
       <input type="password" placeholder="password" v-model="password">
-      <button type="button" :disabled="warningExist" @click="logIn">登录</button>
+      <span class="modal-msg">{{ msg }}</span>
+      <button type="button" :disabled="warningExist || !usernameValid || !passwordValid" @click="logIn">登录</button>
     </div>
   </div>
 </template>
@@ -34,6 +35,27 @@ export default {
   computed: {
     warningExist () {
       return this.getWarnings.length > 0
+    },
+    usernameValid () {
+      if (this.username.length >= 6 && this.username.length <= 12) {
+        return true
+      }
+      return false
+    },
+    passwordValid () {
+      if (this.password.length >= 6 && this.password.length <= 15) {
+        return true
+      }
+      return false
+    },
+    msg () {
+      if (!this.usernameValid) {
+        return '请输入6~12位的用户名'
+      } else if (!this.passwordValid) {
+        return '请输入6~15位的密码'
+      } else {
+        return ''
+      }
     }
   },
   methods: {
@@ -61,8 +83,9 @@ export default {
 </script>
 
 <style lang="less">
-  @blue: #8888ff;
+  @blue: #66aaee;
   @grey: #bbb;
+  @red: #fb7777;
   .modal-shadow {
     position: absolute;
     top: 0;
@@ -90,7 +113,13 @@ export default {
       .modal-title {
         color: @blue;
         font-weight: bold;
-        margin: 10px 0 2px 0;
+        margin: 10px 0 10px 0;
+      }
+      .modal-msg {
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: @red;
+        margin-top: 10px;
       }
       input {
         border-top: none;

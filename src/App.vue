@@ -60,7 +60,12 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+  * {
+  	&:focus, &:active, &:visited {
+  		outline: none !important; // 取消浏览器自带的focus蓝边框
+  	}
+  }
   body {
     margin: 0;
   }
