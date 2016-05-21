@@ -7,7 +7,8 @@ const state = {
   assignments: [],
   loginOpened: false,
   signupOpened: false,
-  username: ''
+  username: '',
+  warnings: []
 }
 
 const mutations = {
@@ -25,6 +26,10 @@ const mutations = {
   },
   CLEARUSERNAME (state) {
     state.username = ''
+  },
+  ADDWARNING (state, warning) {
+    state.warnings.push(warning)
+    setTimeout(() => state.warnings.shift(), 2000)
   }
 }
 

@@ -5,7 +5,7 @@
       <input type="text" placeholder="username" v-model="username">
       <input type="password" placeholder="password" v-model="password1">
       <input type="password" placeholder="password again" v-model="password2">
-      <button type="button" @click="signUp">确认</button>
+      <button type="button" :disabled="warningExist" @click="signUp">确认</button>
     </div>
   </div>
 </template>
@@ -13,6 +13,7 @@
 <script>
 import { toggleLogin, toggleSignup, setUsername } from '../vuex/actions'
 import { router } from '../vue-router/router'
+import { getWarnings } from '../vuex/getters'
 
 export default {
   data () {
@@ -27,6 +28,14 @@ export default {
       toggleLogin,
       toggleSignup,
       setUsername
+    },
+    getters: {
+      getWarnings
+    }
+  },
+  computed: {
+    warningExist () {
+      return this.getWarnings.length > 0
     }
   },
   methods: {

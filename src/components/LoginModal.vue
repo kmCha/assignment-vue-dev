@@ -4,14 +4,15 @@
       <span class="modal-title">用户登录</span>
       <input type="text" placeholder="username" v-model="username">
       <input type="password" placeholder="password" v-model="password">
-      <button type="button" @click="logIn">登录</button>
+      <button type="button" :disabled="warningExist" @click="logIn">登录</button>
     </div>
   </div>
 </template>
 
 <script>
-import { toggleLogin, setUsername } from '../vuex/actions'
+import { toggleLogin, setUsername, addWarning } from '../vuex/actions'
 import { router } from '../vue-router/router'
+import { getWarnings } from '../vuex/getters'
 
 export default {
   data () {
@@ -23,7 +24,16 @@ export default {
   vuex: {
     actions: {
       toggleLogin,
-      setUsername
+      setUsername,
+      addWarning
+    },
+    getters: {
+      getWarnings
+    }
+  },
+  computed: {
+    warningExist () {
+      return this.getWarnings.length > 0
     }
   },
   methods: {
@@ -39,6 +49,10 @@ export default {
           router.go({
             path: '/home'
           })
+        } else {
+          this.addWarning({
+            msg: user.data.msg
+          })
         }
       })
     }
@@ -48,6 +62,7 @@ export default {
 
 <style lang="less">
   @blue: #8888ff;
+  @grey: #bbb;
   .modal-shadow {
     position: absolute;
     top: 0;
@@ -89,6 +104,9 @@ export default {
         font-weight: bold;
         border: none;
         background: @blue;
+        &:disabled {
+          background: @grey;
+        }
       }
       input, button {
         // display: block;

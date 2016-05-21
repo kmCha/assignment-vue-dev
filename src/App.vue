@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <warning v-show="warningExist"></warning>
     <login-modal v-show="loginOpened" transition="fade"></login-modal>
     <signup-modal v-show="signupOpened" transition="fade"></signup-modal>
     <ass-header></ass-header>
@@ -15,8 +16,9 @@ import AssHeader from './components/AssHeader'
 import AssFooter from './components/AssFooter'
 import LoginModal from './components/LoginModal'
 import SignupModal from './components/SignupModal'
+import Warning from './components/Warning'
 import store from './vuex/store'
-import { isLoginOpened, isSignupOpened } from './vuex/getters'
+import { isLoginOpened, isSignupOpened, getWarnings } from './vuex/getters'
 import Vue from 'vue'
 
 Vue.transition('fade', {
@@ -39,13 +41,20 @@ export default {
     AssHeader,
     AssFooter,
     LoginModal,
-    SignupModal
+    SignupModal,
+    Warning
+  },
+  computed: {
+    warningExist () {
+      return this.getWarnings.length > 0
+    }
   },
   store,
   vuex: {
     getters: {
       loginOpened: isLoginOpened,
-      signupOpened: isSignupOpened
+      signupOpened: isSignupOpened,
+      getWarnings
     }
   }
 }
