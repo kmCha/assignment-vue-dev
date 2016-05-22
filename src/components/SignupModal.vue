@@ -3,9 +3,10 @@
     <div class="modal-content">
       <span class="modal-title">注册账号</span>
       <input type="text" placeholder="username" v-model="username">
-      <input type="password" placeholder="password" v-model="password1">
+      <input type="password" placeholder="password" v-model="password">
       <input type="password" placeholder="password again" v-model="password2">
-      <button type="button" :disabled="warningExist" @click="signUp">确认</button>
+      <span class="modal-msg">{{ msg }}</span>
+      <button type="button" :disabled="warningExist || !usernameValid || !passwordValid || !passwordConf" @click="signUp">确认</button>
     </div>
   </div>
 </template>
@@ -14,12 +15,13 @@
 import { toggleLogin, toggleSignup, setUsername } from '../vuex/actions'
 import { router } from '../vue-router/router'
 import { getWarnings } from '../vuex/getters'
+import validation from '../vue-mixins/user-validation'
 
 export default {
   data () {
     return {
       username: '',
-      password1: '',
+      password: '',
       password2: ''
     }
   },
@@ -33,6 +35,7 @@ export default {
       getWarnings
     }
   },
+  mixins: [validation],
   computed: {
     warningExist () {
       return this.getWarnings.length > 0
