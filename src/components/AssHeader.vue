@@ -8,6 +8,7 @@
         <img class="nav-logo" src="../assets/logo.png" alt="logo" />
       </li>
       <li class="item item-right" v-if="getUsername" @click="logOut">注销</li>
+      <li class="item item-right" v-if="getUsername">{{ getUsername }}</li>
     </ul>
   </div>
 </template>
@@ -83,6 +84,9 @@ export default {
     .nav-logo {
       height: 0.88rem;
       width: 0.88rem;
+      padding: 0;
+      border: none;
+      display: block;
     }
   }
 </style>
