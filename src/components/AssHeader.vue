@@ -61,7 +61,6 @@ export default {
     background: @rose;
     color: white;
     font-weight: bold;
-    font-family: Lucida Console, sans-serif;
   }
   .list {
     position: relative;

@@ -55,6 +55,7 @@ export default {
   }
   body {
     margin: 0;
+    font-family: "Microsoft YaHei", "微软雅黑", STXihei, "华文细黑", sans-serif;
   }
 </style>
 <style src="./vue-animation/animation.less" lang="less"></style>
