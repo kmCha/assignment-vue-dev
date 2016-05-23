@@ -1,6 +1,6 @@
 <template>
   <div class="welcome">
-    <span>welcome</span>
+    <h1>welcome</h1>
   </div>
 </template>
 
@@ -27,3 +27,17 @@ export default {
   }
 }
 </script>
+
+<style lang="less">
+  .welcome {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../assets/index-background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+  }
+</style>
