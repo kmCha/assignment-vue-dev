@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { toggleLogin, clearUsername, toggleSignup } from '../vuex/actions'
+import { toggleLogin, clearUsername, toggleSignup, addWarning } from '../vuex/actions'
 import { getUsername } from '../vuex/getters'
 import { router } from '../vue-router/router'
 
@@ -26,10 +26,17 @@ export default {
   methods: {
     logOut () {
       this.$http.get('/users/logOut').then(res => {
-        if (res.data.status === 'success') {
-          this.clearUsername()
-          router.go({ path: '/' })
-        }
+        this.clearUsername()
+        this.addWarning({
+          type: 'success',
+          msg: '已注销'
+        })
+        router.go({ path: '/' })
+      }).catch(() => {
+        this.addWarning({
+          type: 'fail',
+          msg: '注销失败'
+        })
       })
     }
   },
@@ -37,7 +44,8 @@ export default {
     actions: {
       toggleLogin,
       toggleSignup,
-      clearUsername
+      clearUsername,
+      addWarning
     },
     getters: {
       getUsername
