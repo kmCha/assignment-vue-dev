@@ -6,7 +6,7 @@
       <input type="password" placeholder="password" v-model="password">
       <input type="password" placeholder="password again" v-model="password2">
       <span class="modal-msg">{{ msg }}</span>
-      <button type="button" :disabled="warningExist || !usernameValid || !passwordValid || !passwordConf" @click="signUp">确认</button>
+      <button type="button" :disabled="disable" @click="signUp">确认</button>
     </div>
   </div>
 </template>
@@ -43,10 +43,16 @@ export default {
   computed: {
     warningExist () {
       return this.getWarnings.length > 0
+    },
+    disable () {
+      return this.warningExist || !this.usernameValid || !this.passwordValid || !this.passwordConf
     }
   },
   methods: {
     signUp () {
+      if (this.disable) {
+        return
+      }
       this.setLoadingMsg('注册')
       let User = this.$resource('/users/signUp')
       return User.save({
