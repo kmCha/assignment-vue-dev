@@ -58,6 +58,10 @@ export default {
 <style lang="less" scoped>
   @import "../stylesheets/color.less";
   .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     background: @rose;
     color: white;
     font-weight: bold;
@@ -65,9 +69,8 @@ export default {
   .list {
     position: relative;
     list-style: none;
-    margin-top: 0;
+    margin: 0;
     padding: 0 1rem;
-    overflow: hidden;
     .item {
       display: inline-block;
       font-size: 0.88rem;
