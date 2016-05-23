@@ -49,3 +49,18 @@
 .warning-enter, .warning-leave {
   transform: translateY(-5rem);
 }
+
+@keyframes loading-animation {
+  0%, 100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  25% {
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+  }
+  50% {
+    clip-path: polygon(100% 100%, 0 100%, 0 0, 100% 0);
+  }
+  75% {
+    clip-path: polygon(0 100%, 0 0, 100% 0, 100% 100%);
+  }
+}
