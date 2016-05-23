@@ -1,7 +1,7 @@
 <template>
   <div class="warning-wrap">
     <ul class="warning-list">
-      <li v-for="warning in warnings">{{ warning.msg }}</li>
+      <li v-for="warning in warnings" :class="classObj(warning)" transition="warning">{{ warning.msg }}</li>
     </ul>
   </div>
 </template>
@@ -14,11 +14,21 @@
       getters: {
         warnings: getWarnings
       }
+    },
+    methods: {
+      classObj (warning) {
+        return {
+          'warning-success': warning.type === 'success',
+          'warning-fail': warning.type === 'fail'
+        }
+      }
     }
   }
 </script>
 
 <style lang="less">
+  @import "../stylesheets/color.less";
+
   .warning-list {
     position: absolute;
     top: 0;
@@ -31,5 +41,19 @@
     justify-content: center;
     align-items: center;
     padding: 0;
+    margin: 0;
+    li {
+      display: block;
+      padding: 2rem 4rem;
+      font-weight: bold;
+      border-bottom-left-radius: 1rem;
+      border-bottom-right-radius: 1rem;
+    }
+    .warning-fail {
+      background: @red;
+    }
+    .warning-success {
+      background: @green;
+    }
   }
 </style>

@@ -44,7 +44,8 @@ router.post('/logIn', function (req, res) {
 				req.session.cookie.expires = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);        //只有登陆了才设置session name为帐号，否则为null，浏览器关闭自动销毁（见session.js)
 				req.session.name = user.name;
 				user = {
-					status: 'success'
+					status: 'success',
+					msg: user.name + '，欢迎回来'
 				};
 				res.json(user);
 			}

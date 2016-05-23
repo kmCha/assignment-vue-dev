@@ -79,12 +79,17 @@ export default {
           this.username = ''
           this.password = ''
           this.toggleLogin()
+          this.addWarning({
+            msg: user.data.msg,
+            type: 'success'
+          })
           router.go({
             path: '/home'
           })
         } else {
           this.addWarning({
-            msg: user.data.msg
+            msg: user.data.msg,
+            type: 'fail'
           })
         }
       })
