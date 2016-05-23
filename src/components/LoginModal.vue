@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { toggleLogin, setUsername, addWarning } from '../vuex/actions'
+import { toggleLogin, setUsername, addWarning, setLoadingMsg, clearLoadingMsg } from '../vuex/actions'
 import { router } from '../vue-router/router'
 import { getWarnings, modalTransitting } from '../vuex/getters'
 import validation from '../vue-mixins/user-validation'
@@ -27,7 +27,9 @@ export default {
     actions: {
       toggleLogin,
       setUsername,
-      addWarning
+      addWarning,
+      setLoadingMsg,
+      clearLoadingMsg
     },
     getters: {
       getWarnings,
@@ -69,6 +71,7 @@ export default {
       if (this.disable) {
         return
       }
+      this.setLoadingMsg('登录')
       let User = this.$resource('/users/logIn')
       return User.save({
         name: this.username,
@@ -79,6 +82,7 @@ export default {
           this.username = ''
           this.password = ''
           this.toggleLogin()
+          this.clearLoadingMsg()
           this.addWarning({
             msg: user.data.msg,
             type: 'success'

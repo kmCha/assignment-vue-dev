@@ -17,18 +17,30 @@ router.get('/logOut', function (req, res) {
 })
 
 router.post('/signUp', function(req, res) {
-	var shasum = crypto.createHash('sha1')							//sha1不可逆加密密码然后再保存
-	shasum.update(req.body.password)
-	var password = shasum.digest('hex')
-	Users.create({
-		name: req.body.name,
-		password: password
+	Users.findOne({
+		name: req.body.name
 	}).then(user => {
-		req.session.cookie.expires = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);        //只有登陆了才设置session name为帐号，否则为null，浏览器关闭自动销毁（见session.js)
-		req.session.name = user.name;
-		res.json({
-			status: 'success'
-		})
+		if (user) {
+			res.json({
+				status: 'fail',
+				msg: '此账号已存在，请重新输入'
+			})
+		} else {
+			var shasum = crypto.createHash('sha1')							//sha1不可逆加密密码然后再保存
+			shasum.update(req.body.password)
+			var password = shasum.digest('hex')
+			Users.create({
+				name: req.body.name,
+				password: password
+			}).then(user => {
+				req.session.cookie.expires = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);        //只有登陆了才设置session name为帐号，否则为null，浏览器关闭自动销毁（见session.js)
+				req.session.name = user.name;
+				res.json({
+					status: 'success',
+					msg: '注册成功，自动登录...'
+				})
+			})
+		}
 	})
 })
 

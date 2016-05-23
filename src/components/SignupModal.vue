@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { toggleLogin, toggleSignup, setUsername } from '../vuex/actions'
+import { toggleLogin, toggleSignup, setUsername, setLoadingMsg, clearLoadingMsg, addWarning } from '../vuex/actions'
 import { router } from '../vue-router/router'
 import { getWarnings, modalTransitting } from '../vuex/getters'
 import validation from '../vue-mixins/user-validation'
@@ -29,7 +29,10 @@ export default {
     actions: {
       toggleLogin,
       toggleSignup,
-      setUsername
+      setUsername,
+      setLoadingMsg,
+      clearLoadingMsg,
+      addWarning
     },
     getters: {
       getWarnings,
@@ -44,19 +47,30 @@ export default {
   },
   methods: {
     signUp () {
+      this.setLoadingMsg('注册')
       let User = this.$resource('/users/signUp')
       return User.save({
         name: this.username,
         password: this.password
       }).then(user => {
+        this.clearLoadingMsg()
         if (user.data.status === 'success') {
           this.setUsername(this.username)
           this.username = ''
           this.password = ''
           this.password2 = ''
+          this.addWarning({
+            type: 'success',
+            msg: user.data.msg
+          })
           this.toggleSignup()
           router.go({
             path: '/home'
+          })
+        } else {
+          this.addWarning({
+            type: 'fail',
+            msg: user.data.msg
           })
         }
       })

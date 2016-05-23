@@ -9,7 +9,8 @@ const state = {
   signupOpened: false,
   username: '',
   warnings: [],
-  modalTransitting: false
+  modalTransitting: false,
+  loadingMsg: ''
 }
 
 const mutations = {
@@ -39,6 +40,12 @@ const mutations = {
   },
   TRANSITEND (state) {
     state.modalTransitting = false
+  },
+  SETLOADINGMSG (state, msg) {
+    state.loadingMsg = msg
+  },
+  CLEARLOADINGMSG (state) {
+    state.loadingMsg = ''
   }
 }
 

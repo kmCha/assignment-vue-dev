@@ -9,3 +9,5 @@ export const addWarning = ({ dispatch }, warning) => {
 }
 export const beginTransit = ({ dispatch }) => dispatch('BEGINTRANSIT')
 export const transitEnd = ({ dispatch }) => dispatch('TRANSITEND')
+export const setLoadingMsg = ({ dispatch }, msg) => dispatch('SETLOADINGMSG', msg)
+export const clearLoadingMsg = ({ dispatch }) => dispatch('CLEARLOADINGMSG')

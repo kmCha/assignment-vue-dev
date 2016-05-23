@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <warning></warning>
+    <loading v-show="loadingMsg"></loading>
     <login-modal v-show="loginOpened" transition="modal-fade"></login-modal>
     <signup-modal v-show="signupOpened" transition="modal-fade"></signup-modal>
     <ass-header></ass-header>
@@ -17,8 +18,9 @@ import AssFooter from './components/AssFooter'
 import LoginModal from './components/LoginModal'
 import SignupModal from './components/SignupModal'
 import Warning from './components/Warning'
+import Loading from './components/Loading'
 import store from './vuex/store'
-import { isLoginOpened, isSignupOpened } from './vuex/getters'
+import { isLoginOpened, isSignupOpened, getLoadingMsg } from './vuex/getters'
 import { beginTransit, transitEnd } from './vuex/actions'
 
 export default {
@@ -27,13 +29,15 @@ export default {
     AssFooter,
     LoginModal,
     SignupModal,
-    Warning
+    Warning,
+    Loading
   },
   store,
   vuex: {
     getters: {
       loginOpened: isLoginOpened,
-      signupOpened: isSignupOpened
+      signupOpened: isSignupOpened,
+      loadingMsg: getLoadingMsg
     },
     actions: {
       beginTransit,
