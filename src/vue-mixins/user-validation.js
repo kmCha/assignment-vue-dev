@@ -13,7 +13,7 @@ export default {
       return false
     },
     passwordConf () {
-      if (this.password === this.password2) {
+      if (typeof this.password2 === 'undefined' || this.password === this.password2) {
         return true
       }
       return false
