@@ -31,7 +31,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    z-index: 1;
+    z-index: 10;
     .loading-content {
       padding: 1rem 2rem;
       background: @brown;
