@@ -61,6 +61,4 @@ export default {
 }
 </script>
 
-<style lang="less">
-
-</style>
+<style src="../stylesheets/modal.less" lang="less"></style>

@@ -29,7 +29,9 @@ const mutations = {
   },
   ADDWARNING (state, warning) {
     state.warnings.push(warning)
-    setTimeout(() => state.warnings.shift(), 2000)
+  },
+  REMOVEWARNING (state) {
+    state.warnings.shift()
   }
 }
 
