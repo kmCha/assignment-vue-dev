@@ -44,14 +44,17 @@ export default {
   },
   methods: {
     signUp () {
-      let User = this.$resource('/users/logIn')
+      let User = this.$resource('/users/signUp')
       return User.save({
         name: this.username,
-        password: this.password1
+        password: this.password
       }).then(user => {
         if (user.data.status === 'success') {
           this.setUsername(this.username)
-          this.toggleLogin()
+          this.username = ''
+          this.password = ''
+          this.password2 = ''
+          this.toggleSignup()
           router.go({
             path: '/home'
           })
