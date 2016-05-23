@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-shadow" @click.self="tryToggleSignup">
+  <div class="modal-shadow" @click.self="tryToggleSignup" @keyup.enter="signUp">
     <div class="modal-content">
       <span class="modal-title">注册账号</span>
       <input type="text" placeholder="username" v-model="username">

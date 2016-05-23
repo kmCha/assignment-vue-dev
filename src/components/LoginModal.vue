@@ -1,11 +1,11 @@
 <template>
-  <div class="modal-shadow" @click.self="tryToggleLogin">
+  <div class="modal-shadow" @click.self="tryToggleLogin" @keyup.enter="logIn">
     <div class="modal-content">
       <span class="modal-title">用户登录</span>
       <input type="text" placeholder="username" v-model="username">
       <input type="password" placeholder="password" v-model="password">
       <span class="modal-msg">{{ msg }}</span>
-      <button type="button" :disabled="warningExist || !usernameValid || !passwordValid" @click="logIn">登录</button>
+      <button type="button" :disabled="disable" @click="logIn">登录</button>
     </div>
   </div>
 </template>
@@ -38,6 +38,9 @@ export default {
   computed: {
     warningExist () {
       return this.getWarnings.length > 0
+    },
+    disable () {
+      return this.warningExist || !this.usernameValid || !this.passwordValid
     }
     // usernameValid () {
     //   if (this.username.length >= 6 && this.username.length <= 12) {
@@ -63,6 +66,9 @@ export default {
   },
   methods: {
     logIn () {
+      if (this.disable) {
+        return
+      }
       let User = this.$resource('/users/logIn')
       return User.save({
         name: this.username,
@@ -70,6 +76,8 @@ export default {
       }).then(user => {
         if (user.data.status === 'success') {
           this.setUsername(this.username)
+          this.username = ''
+          this.password = ''
           this.toggleLogin()
           router.go({
             path: '/home'
