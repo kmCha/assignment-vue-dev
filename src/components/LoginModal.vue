@@ -77,12 +77,12 @@ export default {
         name: this.username,
         password: this.password
       }).then(user => {
+        this.clearLoadingMsg()
         if (user.data.status === 'success') {
           this.setUsername(this.username)
           this.username = ''
           this.password = ''
           this.toggleLogin()
-          this.clearLoadingMsg()
           this.addWarning({
             msg: user.data.msg,
             type: 'success'
