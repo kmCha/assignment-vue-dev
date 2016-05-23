@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-shadow" @click.self="toggleLogin">
+  <div class="modal-shadow" @click.self="tryToggleLogin">
     <div class="modal-content">
       <span class="modal-title">用户登录</span>
       <input type="text" placeholder="username" v-model="username">
@@ -13,7 +13,7 @@
 <script>
 import { toggleLogin, setUsername, addWarning } from '../vuex/actions'
 import { router } from '../vue-router/router'
-import { getWarnings } from '../vuex/getters'
+import { getWarnings, modalTransitting } from '../vuex/getters'
 import validation from '../vue-mixins/user-validation'
 
 export default {
@@ -30,7 +30,8 @@ export default {
       addWarning
     },
     getters: {
-      getWarnings
+      getWarnings,
+      modalTransitting
     }
   },
   mixins: [validation],   // 用户名和密码的验证计算属性（下方注释部分）
@@ -79,6 +80,11 @@ export default {
           })
         }
       })
+    },
+    tryToggleLogin () {
+      if (!this.modalTransitting) {
+        this.toggleLogin()
+      }
     }
   }
 }

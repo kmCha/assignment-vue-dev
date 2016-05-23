@@ -8,7 +8,8 @@ const state = {
   loginOpened: false,
   signupOpened: false,
   username: '',
-  warnings: []
+  warnings: [],
+  modalTransitting: false
 }
 
 const mutations = {
@@ -32,6 +33,12 @@ const mutations = {
   },
   REMOVEWARNING (state) {
     state.warnings.shift()
+  },
+  BEGINTRANSIT (state) {
+    state.modalTransitting = true
+  },
+  TRANSITEND (state) {
+    state.modalTransitting = false
   }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="modal-shadow" @click.self="toggleSignup">
+  <div class="modal-shadow" @click.self="tryToggleSignup">
     <div class="modal-content">
       <span class="modal-title">注册账号</span>
       <input type="text" placeholder="username" v-model="username">
@@ -14,7 +14,7 @@
 <script>
 import { toggleLogin, toggleSignup, setUsername } from '../vuex/actions'
 import { router } from '../vue-router/router'
-import { getWarnings } from '../vuex/getters'
+import { getWarnings, modalTransitting } from '../vuex/getters'
 import validation from '../vue-mixins/user-validation'
 
 export default {
@@ -32,7 +32,8 @@ export default {
       setUsername
     },
     getters: {
-      getWarnings
+      getWarnings,
+      modalTransitting
     }
   },
   mixins: [validation],
@@ -56,6 +57,11 @@ export default {
           })
         }
       })
+    },
+    tryToggleSignup () {
+      if (!this.modalTransitting) {
+        this.toggleSignup()
+      }
     }
   }
 }

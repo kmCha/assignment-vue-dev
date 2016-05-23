@@ -3,3 +3,4 @@ export const isLoginOpened = state => state.loginOpened
 export const isSignupOpened = state => state.signupOpened
 export const getUsername = state => state.username
 export const getWarnings = state => state.warnings
+export const modalTransitting = state => state.modalTransitting

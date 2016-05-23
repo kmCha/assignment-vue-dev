@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <warning v-show="warningExist"></warning>
-    <login-modal v-show="loginOpened" transition="fade"></login-modal>
-    <signup-modal v-show="signupOpened" transition="fade"></signup-modal>
+    <login-modal v-show="loginOpened" transition="modal-fade"></login-modal>
+    <signup-modal v-show="signupOpened" transition="modal-fade"></signup-modal>
     <ass-header></ass-header>
     <router-view></router-view>
     <ass-footer></ass-footer>
@@ -19,6 +19,7 @@ import SignupModal from './components/SignupModal'
 import Warning from './components/Warning'
 import store from './vuex/store'
 import { isLoginOpened, isSignupOpened, getWarnings } from './vuex/getters'
+import { beginTransit, transitEnd } from './vuex/actions'
 
 export default {
   components: {
@@ -39,6 +40,10 @@ export default {
       loginOpened: isLoginOpened,
       signupOpened: isSignupOpened,
       getWarnings
+    },
+    actions: {
+      beginTransit,
+      transitEnd
     }
   }
 }

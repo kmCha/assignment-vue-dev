@@ -7,3 +7,5 @@ export const addWarning = ({ dispatch }, warning) => {
   dispatch('ADDWARNING', warning)
   setTimeout(() => dispatch('REMOVEWARNING'), 2000)
 }
+export const beginTransit = ({ dispatch }) => dispatch('BEGINTRANSIT')
+export const transitEnd = ({ dispatch }) => dispatch('TRANSITEND')
