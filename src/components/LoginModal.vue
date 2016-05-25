@@ -2,7 +2,7 @@
   <div class="modal-shadow" @click.self="tryToggleLogin" @keyup.enter="logIn">
     <div class="modal-content">
       <span class="modal-title">用户登录</span>
-      <input type="text" placeholder="username" v-model="username">
+      <input type="text" v-focus="isLoginOpened" placeholder="username" v-model="username">
       <input type="password" placeholder="password" v-model="password">
       <span class="modal-msg">{{ msg }}</span>
       <button type="button" :disabled="disable" @click="logIn">登录</button>
@@ -13,7 +13,7 @@
 <script>
 import { toggleLogin, setUsername, addWarning, setLoadingMsg, clearLoadingMsg } from '../vuex/actions'
 import { router } from '../vue-router/router'
-import { getWarnings, modalTransitting } from '../vuex/getters'
+import { getWarnings, modalTransitting, isLoginOpened } from '../vuex/getters'
 import validation from '../vue-mixins/user-validation'
 
 export default {
@@ -33,7 +33,8 @@ export default {
     },
     getters: {
       getWarnings,
-      modalTransitting
+      modalTransitting,
+      isLoginOpened
     }
   },
   mixins: [validation],   // 用户名和密码的验证计算属性（下方注释部分）

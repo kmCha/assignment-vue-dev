@@ -2,7 +2,7 @@
   <div class="modal-shadow" @click.self="tryToggleSignup" @keyup.enter="signUp">
     <div class="modal-content">
       <span class="modal-title">注册账号</span>
-      <input type="text" placeholder="username" v-model="username">
+      <input type="text" v-focus="isSignupOpened" placeholder="username" v-model="username">
       <input type="password" placeholder="password" v-model="password">
       <input type="password" placeholder="password again" v-model="password2">
       <span class="modal-msg">{{ msg }}</span>
@@ -14,7 +14,7 @@
 <script>
 import { toggleLogin, toggleSignup, setUsername, setLoadingMsg, clearLoadingMsg, addWarning } from '../vuex/actions'
 import { router } from '../vue-router/router'
-import { getWarnings, modalTransitting } from '../vuex/getters'
+import { getWarnings, modalTransitting, isSignupOpened } from '../vuex/getters'
 import validation from '../vue-mixins/user-validation'
 
 export default {
@@ -36,7 +36,8 @@ export default {
     },
     getters: {
       getWarnings,
-      modalTransitting
+      modalTransitting,
+      isSignupOpened
     }
   },
   mixins: [validation],
