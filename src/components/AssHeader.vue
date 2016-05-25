@@ -5,7 +5,7 @@
       <li class="item clickable" v-if="!getUsername" @click="toggleLogin">登录</li>
       <li class="item clickable" v-if="!getUsername" @click="toggleSignup">注册</li>
       <li class="item-right">
-        <div class="item" v-if="getUsername">{{ getUsername }}</div>
+        <div class="item username" v-if="getUsername">{{ getUsername }}</div>
         <div class="item clickable" v-if="getUsername" @click="logOut">注销</div>
         <img class="nav-logo" src="../assets/logo.png" alt="logo" />
       </li>
@@ -62,8 +62,8 @@ export default {
     top: 0;
     left: 0;
     right: 0;
-    background: @rose;
-    color: white;
+    background: rgba(255, 255, 255, 0.94);;
+    box-shadow: 0 0 1px 0px rgba(0, 0, 0, 0.5), 0 0 6px 1px rgba(0, 0, 0, 0.5);
     font-weight: bold;
   }
   .list {
@@ -76,11 +76,16 @@ export default {
       font-size: 0.88rem;
       padding: 0.5em 0.3em;
       transition: background-color 0.3s;
+      color: @red;
       &.clickable {
         &:hover {
-          background-color: darken(@rose, 5%);
+          color: white;
+          background-color: @red;
         }
         cursor: pointer;
+      }
+      &.username {
+        color: @blue;
       }
     }
     .item-right {
