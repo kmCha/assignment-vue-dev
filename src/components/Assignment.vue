@@ -1,7 +1,7 @@
 <template>
-  <div class="assignment">
+  <li class="assignment">
     <span>{{ assignment.code }},{{ assignment.title }}</span>
-  </div>
+  </li>
 </template>
 
 <script>
@@ -11,3 +11,13 @@
     ]
   }
 </script>
+
+<style lang="less">
+  .assignment {
+    display: block;
+    margin: 0;
+    width: 50vw;
+    height: 50vh;
+    border: 1px solid #000;
+  }
+</style>

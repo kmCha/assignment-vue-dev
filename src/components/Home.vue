@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <span v-if="$loadingRouteData">loading...</span>
-    <ul v-if="!$loadingRouteData">
+    <ul v-if="!$loadingRouteData" class="assignmentWrap">
       <assignment v-for="assignment in limitedAss" :assignment="assignment"></assignment>
     </ul>
-    <button type="button" @click="loadAssignment">继续加载</button>
+    <button type="button" v-if="!$loadingRouteData" @click="loadAssignment">继续加载</button>
   </div>
 </template>
 
@@ -60,3 +60,17 @@ export default {
   }
 }
 </script>
+
+<style lang="less">
+  .home {
+    padding-top: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 1.8rem);
+  }
+  .assignmentWrap {
+    padding: 0;
+  }
+</style>
