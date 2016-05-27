@@ -4,13 +4,13 @@
     <ul v-if="!$loadingRouteData" class="assignmentWrap">
       <assignment v-for="assignment in limitedAss" :assignment="assignment"></assignment>
     </ul>
-    <button type="button" v-if="!$loadingRouteData" @click="loadAssignment">继续加载</button>
+    <button type="button" v-if="!$loadingRouteData" :disabled="!!warnings.length" @click="loadAssignment">继续加载</button>
   </div>
 </template>
 
 <script>
-import { setAssignments } from '../vuex/actions'
-import { getAssignments, getUsername } from '../vuex/getters'
+import { setAssignments, addWarning } from '../vuex/actions'
+import { getAssignments, getUsername, getWarnings } from '../vuex/getters'
 import Assignment from './Assignment'
 
 export default {
@@ -23,6 +23,11 @@ export default {
     loadAssignment () {
       if (this.numOfAss < this.assignments.length) {
         this.numOfAss++
+      } else {
+        this.addWarning({
+          type: 'fail',
+          msg: '没有更多'
+        })
       }
     }
   },
@@ -51,17 +56,20 @@ export default {
   },
   vuex: {
     actions: {
-      setAssignments
+      setAssignments,
+      addWarning
     },
     getters: {
       assignments: getAssignments,
-      getUsername
+      getUsername,
+      warnings: getWarnings
     }
   }
 }
 </script>
 
 <style lang="less">
+  @import "../stylesheets/color.less";
   .home {
     padding-top: 1.8rem;
     display: flex;
@@ -69,8 +77,21 @@ export default {
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 1.8rem);
+    background: rgba(100, 100, 100, 0.05);
+    button {
+      padding: 0.5rem 0.25rem;
+      background: #fff;
+      border: none;
+      border-radius: 0.1rem;
+      color: @red;
+      border: @red 1px solid;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      cursor: pointer;
+    }
   }
   .assignmentWrap {
     padding: 0;
+    margin: 0;
   }
 </style>
