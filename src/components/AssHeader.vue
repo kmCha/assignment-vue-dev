@@ -4,7 +4,7 @@
       <li class="item">Assignment Recorder</li>
       <li class="item clickable" v-if="!getUsername" @click="toggleLogin">登录</li>
       <li class="item clickable" v-if="!getUsername" @click="toggleSignup">注册</li>
-      <li class="item search"><input type="text" value="" placeholder="输入过滤内容"></li>
+      <li class="item search"><input type="text" placeholder="输入过滤内容" @change="alert('aaa')"></li>
       <li class="item-right">
         <div class="item username" v-if="getUsername">{{ getUsername }}</div>
         <div class="item clickable" v-if="getUsername" @click="logOut">注销</div>
