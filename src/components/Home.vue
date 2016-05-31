@@ -4,7 +4,10 @@
     <ul v-if="!$loadingRouteData" class="assignmentWrap">
       <assignment v-for="assignment in limitedAss" :assignment="assignment"></assignment>
     </ul>
-    <button type="button" v-if="!$loadingRouteData" :disabled="!!warnings.length" @click="loadAssignment">继续加载</button>
+    <button type="button" v-if="!$loadingRouteData && limitedAss.length" :disabled="!!warnings.length" @click="loadAssignment">继续加载</button>
+    <div class="no-assignments" v-if="!limitedAss.length">
+      还没有作业，先添加作业
+    </div>
   </div>
 </template>
 
