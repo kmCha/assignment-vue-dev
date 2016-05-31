@@ -10,7 +10,8 @@ const state = {
   username: '',
   warnings: [],
   modalTransitting: false,
-  loadingMsg: ''
+  loadingMsg: '',
+  assFilter: ''
 }
 
 const mutations = {
@@ -46,6 +47,9 @@ const mutations = {
   },
   CLEARLOADINGMSG (state) {
     state.loadingMsg = ''
+  },
+  SETASSFILTER (state, filter) {
+    state.assFilter = filter
   }
 }
 

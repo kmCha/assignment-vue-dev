@@ -10,7 +10,7 @@
 
 <script>
 import { setAssignments, addWarning } from '../vuex/actions'
-import { getAssignments, getUsername, getWarnings } from '../vuex/getters'
+import { getAssignments, getUsername, getWarnings, getAssFilter } from '../vuex/getters'
 import Assignment from './Assignment'
 
 export default {
@@ -33,7 +33,9 @@ export default {
   },
   computed: {
     limitedAss () {
-      return this.assignments.slice(0, this.numOfAss)
+      return this.assignments.slice(0, this.numOfAss).filter(assignment => {
+        return JSON.stringify(assignment).indexOf(this.getAssFilter) >= 0
+      })
     }
   },
   components: {
@@ -62,7 +64,8 @@ export default {
     getters: {
       assignments: getAssignments,
       getUsername,
-      warnings: getWarnings
+      warnings: getWarnings,
+      getAssFilter
     }
   }
 }
