@@ -6,7 +6,7 @@
     </ul>
     <button type="button" v-if="!$loadingRouteData && limitedAss.length" :disabled="!!warnings.length" @click="loadAssignment">继续加载</button>
     <div class="no-assignments" v-if="!limitedAss.length">
-      还没有作业，先添加作业
+      没有作业
     </div>
   </div>
 </template>

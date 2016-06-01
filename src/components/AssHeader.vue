@@ -4,7 +4,8 @@
       <li class="item">Assignment Recorder</li>
       <li class="item clickable" v-if="!getUsername" @click="toggleLogin">登录</li>
       <li class="item clickable" v-if="!getUsername" @click="toggleSignup">注册</li>
-      <li class="item search"><input type="text" placeholder="输入过滤内容" @input="setFilter"></li>
+      <li class="item clickable" v-if="getUsername" @click="toggleSignup">添加</li>
+      <li class="item search"><input class="ass-filter"  v-if="getUsername" type="text" @input="setFilter"></li>
       <li class="item-right">
         <div class="item username" v-if="getUsername">{{ getUsername }}</div>
         <div class="item clickable" v-if="getUsername" @click="logOut">注销</div>
@@ -76,6 +77,8 @@ export default {
     list-style: none;
     margin: 0;
     padding: 0 1rem;
+    display: flex;
+    align-items: center;
     .item {
       display: inline-block;
       font-size: 0.88rem;
@@ -103,10 +106,29 @@ export default {
       align-items: center;
     }
     .nav-logo {
-      height: 0.88rem;
-      width: 0.88rem;
+      height: 0.8rem;
+      width: 0.8rem;
       padding: 0.5rem 0.3rem;
       display: inline-block;
+    }
+    .search {
+      padding: 0;
+      .ass-filter {
+        position: relative;
+        display: block;
+        border-radius: 5px;
+        border: none;
+        border-bottom: 2px @red solid;
+        color: @blue;
+        font-weight: bold;
+        padding-left: 1.5rem;
+        margin: 0 1rem;
+        width: 1rem;
+        background-image: url('../assets/search.png');
+        background-position: left;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
     }
   }
 </style>
