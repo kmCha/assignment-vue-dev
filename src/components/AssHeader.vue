@@ -118,16 +118,21 @@ export default {
         display: block;
         border-radius: 5px;
         border: none;
-        border-bottom: 2px @red solid;
         color: @blue;
         font-weight: bold;
-        padding-left: 1.5rem;
-        margin: 0 1rem;
-        width: 1rem;
+        padding-left: 1.2rem;
+        margin: 0 0.5rem;
+        width: 0.3rem;
+        border-bottom: 2px transparent solid;
         background-image: url('../assets/search.png');
         background-position: left;
         background-size: contain;
         background-repeat: no-repeat;
+        transition: 0.5s ease all;
+        &:focus {
+          width: 8rem;
+          border-bottom: 2px @red solid;
+        }
       }
     }
   }
