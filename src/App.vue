@@ -4,6 +4,7 @@
     <loading v-show="loadingMsg"></loading>
     <login-modal v-show="loginOpened" transition="modal-fade"></login-modal>
     <signup-modal v-show="signupOpened" transition="modal-fade"></signup-modal>
+    <edit-modal v-show="editOpened" transition="modal-fade"></edit-modal>
     <ass-header></ass-header>
     <router-view></router-view>
     <ass-footer></ass-footer>
@@ -17,10 +18,11 @@ import AssHeader from './components/AssHeader'
 import AssFooter from './components/AssFooter'
 import LoginModal from './components/LoginModal'
 import SignupModal from './components/SignupModal'
+import EditModal from './components/EditModal'
 import Warning from './components/Warning'
 import Loading from './components/Loading'
 import store from './vuex/store'
-import { isLoginOpened, isSignupOpened, getLoadingMsg } from './vuex/getters'
+import { isLoginOpened, isSignupOpened, getLoadingMsg, isEditOpened } from './vuex/getters'
 import { beginTransit, transitEnd } from './vuex/actions'
 
 export default {
@@ -30,13 +32,15 @@ export default {
     LoginModal,
     SignupModal,
     Warning,
-    Loading
+    Loading,
+    EditModal
   },
   store,
   vuex: {
     getters: {
       loginOpened: isLoginOpened,
       signupOpened: isSignupOpened,
+      editOpened: isEditOpened,
       loadingMsg: getLoadingMsg
     },
     actions: {

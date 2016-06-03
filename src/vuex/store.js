@@ -7,6 +7,7 @@ const state = {
   assignments: [],
   loginOpened: false,
   signupOpened: false,
+  editOpened: false,
   username: '',
   warnings: [],
   modalTransitting: false,
@@ -23,6 +24,9 @@ const mutations = {
   },
   TOGGLESIGNUP (state) {
     state.signupOpened = !state.signupOpened
+  },
+  TOGGLEEDIT (state) {
+    state.editOpened = !state.editOpened
   },
   SETUSERNAME (state, username) {
     state.username = username

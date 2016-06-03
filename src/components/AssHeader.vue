@@ -4,7 +4,7 @@
       <li class="item">Assignment Recorder</li>
       <li class="item clickable" v-if="!getUsername" @click="toggleLogin">登录</li>
       <li class="item clickable" v-if="!getUsername" @click="toggleSignup">注册</li>
-      <li class="item clickable" v-if="getUsername" @click="toggleSignup">添加</li>
+      <li class="item clickable" v-if="getUsername" @click="toggleEdit">添加</li>
       <li class="item search"><input class="ass-filter"  v-if="getUsername" type="text" @input="setFilter"></li>
       <li class="item-right">
         <div class="item username" v-if="getUsername">{{ getUsername }}</div>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { toggleLogin, clearUsername, toggleSignup, addWarning, setAssFilter } from '../vuex/actions'
+import { toggleLogin, clearUsername, toggleSignup, addWarning, setAssFilter, toggleEdit } from '../vuex/actions'
 import { getUsername } from '../vuex/getters'
 import { router } from '../vue-router/router'
 
@@ -52,7 +52,8 @@ export default {
       toggleSignup,
       clearUsername,
       addWarning,
-      setAssFilter
+      setAssFilter,
+      toggleEdit
     },
     getters: {
       getUsername

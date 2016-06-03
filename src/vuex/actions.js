@@ -1,6 +1,7 @@
 export const setAssignments = ({ dispatch }, assignments) => dispatch('SETASSIGNMENTS', assignments)
 export const toggleLogin = ({ dispatch }) => dispatch('TOGGLELOGIN')
 export const toggleSignup = ({ dispatch }) => dispatch('TOGGLESIGNUP')
+export const toggleEdit = ({ dispatch }) => dispatch('TOGGLEEDIT')
 export const setUsername = ({ dispatch }, username) => dispatch('SETUSERNAME', username)
 export const clearUsername = ({ dispatch }) => dispatch('CLEARUSERNAME')
 export const addWarning = ({ dispatch }, warning) => {

@@ -1,6 +1,7 @@
 export const getAssignments = state => state.assignments
 export const isLoginOpened = state => state.loginOpened
 export const isSignupOpened = state => state.signupOpened
+export const isEditOpened = state => state.editOpened
 export const getUsername = state => state.username
 export const getWarnings = state => state.warnings
 export const modalTransitting = state => state.modalTransitting
