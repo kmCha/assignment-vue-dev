@@ -2,9 +2,11 @@
   <div class="modal-shadow" @click.self="toggleEdit">
     <div class="modal-content">
       <span class="modal-title">编辑</span>
-      <input type="text" v-focus="isLoginOpened" placeholder="username" v-model="username">
-      <input type="password" placeholder="password" v-model="password">
-      <span class="modal-msg">{{ msg }}</span>
+      <input type="text" v-focus="isLoginOpened" placeholder="课程号" v-model="code">
+      <input type="text" placeholder="课程名" v-model="name">
+      <textarea placeholder="作业描述" rows="8" cols="40" draggable="false" v-model="description"></textarea>
+      <input type="date" v-model="date">
+      <span class="modal-msg">{{ date }}</span>
       <button type="button" :disabled="disable">提交</button>
     </div>
   </div>
@@ -18,7 +20,10 @@ import { router } from '../vue-router/router'
 export default {
   data () {
     return {
-      title: 'header'
+      code: '',
+      name: '',
+      description: '',
+      date: ''
     }
   },
   methods: {

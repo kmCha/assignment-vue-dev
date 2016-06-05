@@ -4,7 +4,7 @@
     <loading v-show="loadingMsg"></loading>
     <login-modal v-show="loginOpened" transition="modal-fade"></login-modal>
     <signup-modal v-show="signupOpened" transition="modal-fade"></signup-modal>
-    <edit-modal v-show="editOpened" transition="modal-fade"></edit-modal>
+    <edit-modal v-if="editOpened" transition="modal-fade"></edit-modal>
     <ass-header></ass-header>
     <router-view></router-view>
     <ass-footer></ass-footer>
